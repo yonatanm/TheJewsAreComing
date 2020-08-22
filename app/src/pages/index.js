@@ -5,44 +5,42 @@ import SEO from "../components/seo"
 // import Img from "gatsby-image"
 
 const IndexPage = ({ data }) => {
-  const [posts, setPosts] = useState([])
+  const [sketches, setScketches] = useState([])
   useEffect(() => {
-    setPosts(data.allGoogleSheetSheet1Row.nodes)
+    setScketches(data.allGoogleSheetSheet1Row.nodes)
   }, [data.allGoogleSheetSheet1Row.nodes])
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      {posts.map(post => (
+      <h1>המתייגים באים</h1>
+      {sketches.map(sketch => (
         <div
-          key={post.sketch}
-          style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}
+          key={sketch.season+"_"+sketch.sketch}          
+
         >
-          <a href={post.youtube}>
-            <h2>{post.title}</h2>
-            <p>{post.characters}</p>
-            <img alt={post.title}
-              src={post.thumbnail}
-            />
-          </a>
+          <h2>עונה: {sketch.season} מערכון: {sketch.sketch} - {sketch.title}</h2>
+          <Link to={`/sketches/s${(""+sketch.season).padStart(2,0)}/${(""+sketch.sketch).padStart(3,0)}`}>
+             <img src={sketch.thumbnail}/>               
+             לתיוג
+         </Link>
         </div>
       ))}
-      <Link to="/page-2/">Go to page 2</Link>
     </Layout>
   )
 }
+
+
+
 
 export default IndexPage
 export const query = graphql`
   {
     allGoogleSheetSheet1Row {
       nodes {
+        season
         sketch
         title
         youtube
-        characters
         thumbnail
       }
     }

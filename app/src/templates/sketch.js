@@ -8,9 +8,10 @@ export default function Sketch( props ) {
   return (
     <Layout>
       <div>
-        <h1>{sketch.title} /{sketch.sketch}</h1> 
-       <h3>{sketch.characters}</h3>
-        <img src={sketch.thumbnail}></img>
+        <h1>{sketch.title}</h1> 
+        <iframe width="560" height="315" src={'https://www.youtube.com/embed/'+new URL(sketch.youtube).searchParams.get('v')
+}  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src={'https://docs.google.com/forms/d/e/1FAIpQLSfVGQjEvU3_Rfvem6cuOdZjNePYYXFbC6TOsYhyclifImInCQ/viewform?embedded=true&usp=pp_url&entry.950216314='+sketch.season+'&entry.996302659='+sketch.sketch} width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       </div>
     </Layout>
   )
@@ -20,8 +21,9 @@ export const query = graphql`
   query($slug: String!) {
     googleSheetSheet1Row(fields: { slug: { eq: $slug } }) {
       title
+      youtube
       sketch
-      characters
+      season
       thumbnail
     }
   }

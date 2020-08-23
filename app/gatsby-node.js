@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
     query {
-      allGoogleSheetSheet1Row(limit:5) {
+      allGoogleSheetSheet1Row {
         edges {
           node {
             fields {

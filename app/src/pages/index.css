@@ -1,0 +1,30 @@
+/* li {
+  color: black;
+}
+li:nth-child(odd) {
+  background-color: #777;
+}
+li:nth-child(even) {
+  background-color: lightgrey;
+} */
+
+
+ul li:hover {
+  background: #3374C2;
+}
+
+ul li:focus {
+  background: #3374C2;
+}
+ul a { text-decoration: none; color:black; }
+ul a:visited { text-decoration: none; color:black; }
+ul a:hover { text-decoration: none; color:black; }
+ul a:focus { text-decoration: none; color:black; }
+ul a:hover, a:active { text-decoration: none; color:black }
+
+
+
+ ul {
+  list-style-type: none;
+
+ }

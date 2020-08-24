@@ -26,7 +26,7 @@ export default function Tag( props ) {
           return (
             <li class='sketch-preview' key={fields.slug}>
               <Link
-                to={`/sketches/${fields.slug}`}
+                to={fields.slug}
               >
                 <h2>
                   עונה: {n.season} מערכון: {n.sketch} - {n.title}

@@ -82,6 +82,15 @@ exports.createPages = async ({ graphql, actions }) => {
     )
   )
 
+  createPage({
+    path: `/tags/`,
+    component: path.resolve(`./src/templates/tags.js`),
+    context: {
+      tags: allTags,
+    },
+  })
+
+
   const tagsMap = allTags.reduce((c, v) => {
     c[v] = []
     return c

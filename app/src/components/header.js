@@ -8,6 +8,7 @@ const Header = ({ siteTitle }) => {
 
   const navItems = [
     <Link to="/about">אודות</Link>,
+    <Link to="/tags">תגיות</Link>,
   ]
 
   return (

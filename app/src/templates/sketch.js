@@ -13,7 +13,7 @@ export default function Sketch( props ) {
     <Layout>
       <div>        
         <h1>{sketch.title} - צפי במערכון, ומלאי את הטופס</h1>
-        {sketch.year.length >0?
+        {sketch.year!= null && sketch.year.length >0?
           <h3>      
             שנה: {sketch.year.trim()}
           </h3>

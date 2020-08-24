@@ -24,7 +24,7 @@ li.tag {
   margin-left: 1em;
   border-radius: 25px;
   background: red;
-  padding: 0.5em;
+  padding-left: 0.5em;
 }
 
 li.tag:hover {

@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import {Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import "./sketch.css"
 
@@ -30,7 +30,8 @@ export default function Sketch( props ) {
           <ul tag='tags'>
             תגיות:
             {props.pageContext.tags.map(t=>{
-              return (<li class='tag'>{t}</li>)
+              const l = '/tags/'+t
+              return (<Link to={l}><li class='tag'>{t}</li></Link> )
             })}
           </ul>
         :null}        

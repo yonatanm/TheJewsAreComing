@@ -5,10 +5,9 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import SideNav, { MenuIcon } from "react-simple-sidenav"
+import {useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"

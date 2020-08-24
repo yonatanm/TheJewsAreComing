@@ -25,7 +25,7 @@ const IndexPage = ({ data }) => {
 </p>
 
 
-      <ul>
+      <ul class='sketches-preview'>
         {sketches.map(sketch => {
           const thumbnailURL = new URL(sketch.thumbnail)
           const fullimageLink =
@@ -35,7 +35,7 @@ const IndexPage = ({ data }) => {
             thumbnailURL.pathname
 
           return (
-            <li key={sketch.season + "_" + sketch.sketch}>
+            <li class='sketch-preview' key={sketch.season + "_" + sketch.sketch}>
               <Link
                 to={`/sketches/s${("" + sketch.season).padStart(2, 0)}/${(
                   "" + sketch.sketch

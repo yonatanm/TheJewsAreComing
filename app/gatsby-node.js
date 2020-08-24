@@ -8,15 +8,31 @@
 const path = require(`path`)
 
 // You can delete this file if you're not using it
+
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  if (node.internal.type === `googleSheetSheet1Row`) {
-    const slug = `/sketches/s${(""+node.season).padStart(2,0)}/${(""+node.sketch).padStart(3,0)}`
+  if (node.internal.type === `googleSheetSheet1Row`) {    
+    const tags = [node.tag1, node.tag2, node.tag3, node.tag4].filter(x=>x!=undefined&&x!=null&&x.trim().length > 0)
+    
     createNodeField({
       node,
       name: `slug`,
-      value: slug,
+      value: `/sketches/s${(""+node.season).padStart(2,0)}/${(""+node.sketch).padStart(3,0)}`,
     })
+
+    createNodeField({
+      node,
+      name: `characters`,
+      value: [node.character1, node.character2, node.character3, node.character4, node.character5].filter(x=>x!=undefined&&x!=null&&x.trim().length > 0)
+    })
+
+    createNodeField({
+      node,
+      name: `tags`,
+      value: tags
+    })
+
   }
 }
 
@@ -30,6 +46,8 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             fields {
               slug
+              characters
+              tags
             }
           }
         }
@@ -39,7 +57,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   
   result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
-    console.log('slug', node.fields.slug)
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/sketch.js`),
@@ -47,7 +64,8 @@ exports.createPages = async ({ graphql, actions }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         slug: node.fields.slug,
-        x: 123
+        characters: node.fields.characters,
+        tags: node.fields.tags,
       },
     })
   })

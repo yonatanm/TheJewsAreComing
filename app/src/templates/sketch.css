@@ -1,0 +1,32 @@
+ul.characters {
+  list-style-type: none;
+ }
+
+ul.tags {
+  list-style-type: none;
+}
+
+li.character {
+  display: inline;
+  margin-left: 1em;
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 0.5em;
+}
+
+li.character:hover {
+  background: lightgreen;
+}
+
+
+li.tag {
+  display: inline;
+  margin-left: 1em;
+  border-radius: 25px;
+  background: red;
+  padding: 0.5em;
+}
+
+li.tag:hover {
+  background: lightcoral;
+}

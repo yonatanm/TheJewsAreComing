@@ -11,7 +11,7 @@ li.character {
   margin-left: 1em;
   border-radius: 25px;
   background: #73AD21;
-  padding: 0.5em;
+  padding-left: 0.5em;
 }
 
 li.character:hover {

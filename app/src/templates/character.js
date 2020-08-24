@@ -2,14 +2,14 @@ import React from "react"
 import Layout from "../components/layout"
 import {Link} from "gatsby"
 
-export default function Tag( props ) {  
+export default function Character( props ) {  
   console.log(props, props.pageContext)
   const nodes = props.pageContext.nodes
   console.log('nodes', nodes )
   return (
     
     <Layout>
-      <h1>{props.pageContext.tag}</h1>
+      <h1>{props.pageContext.character}</h1>
 
 
       <ul class='sketches-preview'>

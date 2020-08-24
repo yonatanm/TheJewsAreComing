@@ -7,8 +7,9 @@ const Header = ({ siteTitle }) => {
   const [showNav, setShowNav] = useState()
 
   const navItems = [
-    <Link to="/about">אודות</Link>,
+    <Link to="/characters">דמויות</Link>,
     <Link to="/tags">תגיות</Link>,
+    <Link to="/about">אודות</Link>,
   ]
 
   return (

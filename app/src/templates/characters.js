@@ -2,19 +2,19 @@ import React from "react"
 import Layout from "../components/layout"
 import {Link} from "gatsby"
 
-export default function Tags( props ) {  
-  const tags = props.pageContext.tags
+export default function Characters( props ) {  
+  const {characters} = props.pageContext
   return (
     
     <Layout>
-      <h1>תגיות</h1>
-      <ul class='tags'>
-        {tags.map(t => {
+      <h1>דמויות</h1>
+      <ul class='characters'>
+        {characters.map(c => {
           return (
             <>
-            <li class='tag' key={t}>
-              <Link to={`/tags/${t}`}>
-                {t}
+            <li class='character' key={c}>
+              <Link to={`/characters/${c}`}>
+                {c}
               </Link>
             </li>
             <br/>

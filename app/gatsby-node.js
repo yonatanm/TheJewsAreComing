@@ -58,15 +58,10 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             youtube
             thumbnail
-
-              
-            
             fields {
               slug
               characters
               tags
-              
-              
             }
           }
         }
@@ -82,6 +77,15 @@ exports.createPages = async ({ graphql, actions }) => {
     )
   )
 
+  const allCharacters = Array.from(
+    new Set(
+      result.data.allGoogleSheetSheet1Row.edges
+        .map(e => e.node.fields.characters)
+        .flat()
+    )
+  )
+
+
   createPage({
     path: `/tags/`,
     component: path.resolve(`./src/templates/tags.js`),
@@ -91,20 +95,36 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
 
+  createPage({
+    path: `/characters/`,
+    component: path.resolve(`./src/templates/characters.js`),
+    context: {
+      characters: allCharacters,
+    },
+  })
+
   const tagsMap = allTags.reduce((c, v) => {
     c[v] = []
     return c
   }, {})
 
-  console.log("tagsMap", tagsMap)
+  const charactersMap = allCharacters.reduce((c, v) => {
+    c[v] = []
+    return c
+  }, {})
+
 
   result.data.allGoogleSheetSheet1Row.edges.reduce((curr, edge) => {
-    const tags = edge.node.fields.tags
-    tags.forEach(t => {
-      curr[t].push(edge.node)
-    })
+    edge.node.fields.tags.forEach(t => curr[t].push(edge.node))
     return curr
   }, tagsMap)
+
+
+  result.data.allGoogleSheetSheet1Row.edges.reduce((curr, edge) => {
+    edge.node.fields.characters.forEach(c => curr[c].push(edge.node))
+    return curr
+  }, charactersMap)
+
 
   Object.keys(tagsMap).forEach(t => {
     createPage({
@@ -117,13 +137,23 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+  Object.keys(charactersMap).forEach(c => {
+    createPage({
+      path: `/characters/${c}`,
+      component: path.resolve(`./src/templates/character.js`),
+      context: {
+        nodes: charactersMap[c],
+        character: c,
+      },
+    })
+  })
+
+
   result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/sketch.js`),
       context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
         slug: node.fields.slug,
         characters: node.fields.characters,
         tags: node.fields.tags,

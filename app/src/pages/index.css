@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 /* li {
   color: black;
 }
@@ -27,4 +29,10 @@ ul.sketch-preview a:hover, a:active { text-decoration: none; color:black }
 
  ul.sketches-preview {
   list-style-type: none;
+ }
+ 
+ .image-carousel {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
  }

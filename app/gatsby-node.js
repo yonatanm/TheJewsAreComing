@@ -13,6 +13,7 @@ const _ = require("lodash")
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `googleSheetSheet1Row`) {
+    if (node.youtube==null || node.youtube==undefined || node.youtube.trim() == 0) return
     const tags = [node.tag1, node.tag2, node.tag3, node.tag4].filter(
       x => x != undefined && x != null && x.trim().length > 0
     )
@@ -34,6 +35,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         node.character3,
         node.character4,
         node.character5,
+        node.character6
       ].filter(x => x != undefined && x != null && x.trim().length > 0),
     })
 
@@ -69,18 +71,18 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
+  const edges = result.data.allGoogleSheetSheet1Row.edges.filter(e=>e.node && e.node.youtube)
+console.log('edges ', edges.length)
   const allTags = Array.from(
     new Set(
-      result.data.allGoogleSheetSheet1Row.edges
-        .map(e => e.node.fields.tags)
+      edges.map(e => e.node.fields.tags)
         .flat()
     )
   )
 
   const allCharacters = Array.from(
     new Set(
-      result.data.allGoogleSheetSheet1Row.edges
-        .map(e => e.node.fields.characters)
+      edges.map(e => e.node.fields.characters)
         .flat()
     )
   )
@@ -114,13 +116,13 @@ exports.createPages = async ({ graphql, actions }) => {
   }, {})
 
 
-  result.data.allGoogleSheetSheet1Row.edges.reduce((curr, edge) => {
+  edges.reduce((curr, edge) => {
     edge.node.fields.tags.forEach(t => curr[t].push(edge.node))
     return curr
   }, tagsMap)
 
 
-  result.data.allGoogleSheetSheet1Row.edges.reduce((curr, edge) => {
+  edges.reduce((curr, edge) => {
     edge.node.fields.characters.forEach(c => curr[c].push(edge.node))
     return curr
   }, charactersMap)
@@ -149,7 +151,7 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
 
-  result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
+  edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/sketch.js`),

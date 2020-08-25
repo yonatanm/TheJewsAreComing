@@ -8,7 +8,8 @@ export default function Sketch( props ) {
   const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSfVGQjEvU3_Rfvem6cuOdZjNePYYXFbC6TOsYhyclifImInCQ/viewform?embedded=true&usp=pp_url&entry.950216314=${sketch.season}&entry.996302659=${sketch.sketch}&entry.274032217=${encodeURIComponent(sketch.title)}`
   const youtubeId = new URL(sketch.youtube).searchParams.get('v')
   const youtubeIframeUr = `https://www.youtube.com/embed/${youtubeId}`
-  const showEdit = !sketch.status || sketch.status.trim() !== 'Done'
+  const showEdit = (sketch && sketch.youtube) && (sketch.status == null || (sketch.status.trim() !== "Done" && sketch.status.trim() !== "Skip"))
+  
 
   return (
     <Layout>

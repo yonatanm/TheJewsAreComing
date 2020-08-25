@@ -7,6 +7,12 @@
  */
 const path = require(`path`)
 const _ = require("lodash")
+require("dotenv").config({
+  path: `config/.env.${process.env.NODE_ENV}`,
+})
+
+
+const googleFormBaseUrl = process.env.GOOGLE_FORM_BASE_URL
 
 // You can delete this file if you're not using it
 
@@ -159,6 +165,7 @@ console.log('edges ', edges.length)
         slug: node.fields.slug,
         characters: node.fields.characters,
         tags: node.fields.tags,
+        googleFormBaseUrl: googleFormBaseUrl
       },
     })
   })

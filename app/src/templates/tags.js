@@ -8,11 +8,11 @@ export default function Tags( props ) {
     
     <Layout>
       <h1>תגיות</h1>
-      <ul class='tags'>
+      <ul className='tags'>
         {tags.map(t => {
           return (
             <>
-            <li class='tag' key={t}>
+            <li className='tag' key={t}>
               <Link to={`/tags/${t}`}>
                 {t}
               </Link>

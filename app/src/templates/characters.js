@@ -8,11 +8,11 @@ export default function Characters( props ) {
     
     <Layout>
       <h1>דמויות</h1>
-      <ul class='characters'>
+      <ul className='characters'>
         {characters.map(c => {
           return (
             <>
-            <li class='character' key={c}>
+            <li className='character' key={c}>
               <Link to={`/characters/${c}`}>
                 {c}
               </Link>

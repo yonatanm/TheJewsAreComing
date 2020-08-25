@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -17,18 +17,11 @@ function shuffle(a) {
   }
   return a;
 }
-var settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
-};
 
 const IndexPage = ({ data }) => {
 
-  const isEditable = (n) => (n && n.youtube) && (n.status == null || (n.status.trim() !== "Done" && n.status.trim() !== "Skip"))
-  const isReady = (n) => (n && n.youtube && n.status != null && n.status.trim() === "Done")
+  const isEditable = (n) => (n && n.youtube && n.status.trim() === 'Edit')
+  const isReady = (n) => (n && n.youtube && n.status.trim() === "Done")
 
   const sketchesToView = data.allGoogleSheetSheet1Row.nodes.filter(isReady)
   const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
@@ -60,16 +53,16 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="המתייגים באים" />
       <p>אנחנו אוהבים את היהודים באים!</p>
+      <b>        {sketchesToView.length} מערכונים כבר תויגו </b>
       <p>
         לכן החלטנו לבנות אתר שינגיש את התכנים. תחשבו על זה כמו כל ויקיפדיה
         ליהודים באים.
       </p>
       <p>
         בשביל זה אנחנו צריכים את העזרה שלכם לתייג את המערכונים ולדעת : מי הן
-        הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.
-        <b>        {sketchesToView.length} מערכונים כבר תויגו </b>
+        הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.        
         <br />
-        בחרי באחד המערכונים המופיעים, צפי, תהני ותצחקי, ומלאי את הטופס.
+        בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
       </p>
       <ImageGallery showFullscreenButton={false} showThumbnails={false} showPlayButton={false} isRTL={true} onClick={(e)=>onClick(e)} items={images}/>
       
@@ -96,7 +89,7 @@ const IndexPage = ({ data }) => {
                 <h2>
                   עונה: {sketch.season} מערכון: {sketch.sketch} - {sketch.title}
                 </h2>
-                <img src={fullimageLink} />
+                <img src={fullimageLink} alt={sketch.title} />
               </Link>
             </li>
           )

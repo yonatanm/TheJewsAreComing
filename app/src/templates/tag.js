@@ -12,7 +12,7 @@ export default function Tag( props ) {
       <h1>{props.pageContext.tag}</h1>
 
 
-      <ul class='sketches-preview'>
+      <ul className='sketches-preview'>
         {nodes.map(n => {
           const fields = n.fields
           const thumbnailURL = new URL(n.thumbnail)
@@ -23,14 +23,14 @@ export default function Tag( props ) {
             thumbnailURL.pathname
 
           return (
-            <li class='sketch-preview' key={fields.slug}>
+            <li className='sketch-preview' key={fields.slug}>
               <Link
                 to={fields.slug}
               >
                 <h2>
                   עונה: {n.season} מערכון: {n.sketch} - {n.title}
                 </h2>
-                <img src={fullimageLink} />
+                <img src={fullimageLink} alt={n.title}/>
               </Link>
             </li>
           )

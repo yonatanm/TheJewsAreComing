@@ -22,7 +22,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     if (node.youtube==null || node.youtube==undefined || node.youtube.trim() == 0) return
     const tags = [node.tag1, node.tag2, node.tag3, node.tag4].filter(
       x => x != undefined && x != null && x.trim().length > 0
-    )
+    ).map(x=>x.trim())
 
     createNodeField({
       node,
@@ -42,7 +42,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         node.character4,
         node.character5,
         node.character6
-      ].filter(x => x != undefined && x != null && x.trim().length > 0),
+      ].filter(x => x != undefined && x != null && x.trim().length > 0).map(x=>x.trim()),
     })
 
     createNodeField({

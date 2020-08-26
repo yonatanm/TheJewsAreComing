@@ -3,69 +3,77 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./index.css"
-import {navigate} from 'gatsby'; //import navigate from gatsby
-
+import { navigate } from "gatsby" //import navigate from gatsby
 
 // Import css files
-import ImageGallery from 'react-image-gallery';
-
+import ImageGallery from "react-image-gallery"
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
   }
-  return a;
+  return a
 }
 
 const IndexPage = ({ data }) => {
-
-  const isEditable = (n) => (n && n.youtube && n.status.trim() === 'Edit')
-  const isReady = (n) => (n && n.youtube && n.status.trim() === "Done")
+  const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
+  const isReady = n => n && n.youtube && n.status.trim() === "Done"
 
   const sketchesToView = data.allGoogleSheetSheet1Row.nodes.filter(isReady)
-  const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
-  const sketchsToCarousel = shuffle([...sketchesToEdit])
 
-  const images = sketchsToCarousel.map(s => {
-    const thumbnailURL = new URL(s.thumbnail)
-    const fullimageLink =
-      thumbnailURL.protocol +
-      "//" +
-      thumbnailURL.host +
-      thumbnailURL.pathname
+  const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
+
+  const onClick = e => {
+    const hashIndex = e.target.src.indexOf("#")
+    const slug = e.target.src.substr(hashIndex + 1)
+    navigate(slug)
+  }
+
+  const getImagesToCarousel = () => {
+    const sketchsToCarousel = shuffle([...sketchesToEdit.slice(0,10)])
+
+    const images = sketchsToCarousel.map(s => {
+      const thumbnailURL = new URL(s.thumbnail)
+      const fullimageLink =
+        thumbnailURL.protocol + "//" + thumbnailURL.host + thumbnailURL.pathname
       const slug = `/sketches/s${("" + s.season).padStart(2, 0)}/${(
-        "" + s.sketch).padStart(3, 0)}`
+        "" + s.sketch
+      ).padStart(3, 0)}`
       const text = `עונה: ${s.season} מערכון: ${s.sketch} - ${s.title}`
       return {
         original: `${fullimageLink}#${slug}`,
-        description: text,                
+        description: text,
       }
-    })    
+    })
 
-    function onClick(e) {
-      const hashIndex = e.target.src.indexOf('#');
-      const slug = e.target.src.substr(hashIndex+1)
-      navigate(slug)
-    }
+    return images
+  }
 
   return (
     <Layout>
       <SEO title="המתייגים באים" />
       <p>אנחנו אוהבים את היהודים באים!</p>
-      <b>        {sketchesToView.length} מערכונים כבר תויגו </b>
+      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
       <p>
         לכן החלטנו לבנות אתר שינגיש את התכנים. תחשבו על זה כמו כל ויקיפדיה
         ליהודים באים.
       </p>
       <p>
         בשביל זה אנחנו צריכים את העזרה שלכם לתייג את המערכונים ולדעת : מי הן
-        הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.        
+        הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.
         <br />
         בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
       </p>
-      <ImageGallery showFullscreenButton={false} showThumbnails={false} showPlayButton={false} isRTL={true} onClick={(e)=>onClick(e)} items={images}/>
-      
+      <ImageGallery
+        showFullscreenButton={false}
+        showThumbnails={false}
+        showPlayButton={false}
+        isRTL={true}
+        onClick={e => onClick(e)}
+        items={getImagesToCarousel()}
+      />
+
       <h2>המערכונים שתויגו - תודה רבה לכולם על העזרה</h2>
       <ul className="sketches-preview">
         {sketchesToView.map(sketch => {

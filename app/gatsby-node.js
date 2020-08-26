@@ -11,8 +11,9 @@ require("dotenv").config({
   path: `config/.env.${process.env.NODE_ENV}`,
 })
 
-
 const googleFormBaseUrl = process.env.GOOGLE_FORM_BASE_URL
+console.log('process.env.NODE_ENV', process.env.NODE_ENV, 'googleFormBaseUrl',googleFormBaseUrl)
+
 
 // You can delete this file if you're not using it
 

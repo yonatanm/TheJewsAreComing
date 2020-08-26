@@ -9,20 +9,20 @@ import { navigate } from "gatsby" //import navigate from gatsby
 import ImageGallery from "react-image-gallery"
 
 function shuffle(a) {
+  console.log('in shuffle before:', a[0].season+"_"+a[0].sketch)
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[a[i], a[j]] = [a[j], a[i]]
   }
+  console.log('in shuffle after:', a[0].season+"_"+a[0].sketch)
   return a
 }
 
 const IndexPage = ({ data }) => {
   const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
   const isReady = n => n && n.youtube && n.status.trim() === "Done"
-
   const sketchesToView = data.allGoogleSheetSheet1Row.nodes.filter(isReady)
 
-  const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
 
   const onClick = e => {
     const hashIndex = e.target.src.indexOf("#")
@@ -31,7 +31,8 @@ const IndexPage = ({ data }) => {
   }
 
   const getImagesToCarousel = () => {
-    const sketchsToCarousel = shuffle([...sketchesToEdit.slice(0,10)])
+    const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
+    const sketchsToCarousel = shuffle([...sketchesToEdit]).filter((v,index)=>index < 10)
 
     const images = sketchsToCarousel.map(s => {
       const thumbnailURL = new URL(s.thumbnail)

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,20 +9,24 @@ import { navigate } from "gatsby" //import navigate from gatsby
 import ImageGallery from "react-image-gallery"
 
 function shuffle(a) {
-  console.log('in shuffle before:', a[0].season+"_"+a[0].sketch)
+  console.log("in shuffle before:", a[0].season + "_" + a[0].sketch)
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[a[i], a[j]] = [a[j], a[i]]
   }
-  console.log('in shuffle after:', a[0].season+"_"+a[0].sketch)
+  console.log("in shuffle after:", a[0].season + "_" + a[0].sketch)
   return a
 }
 
 const IndexPage = ({ data }) => {
+  const [sketches, setScketches] = useState([])
+  useEffect(() => {
+    setScketches(data.allGoogleSheetSheet1Row.nodes)
+  }, [sketches])
+
   const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
   const isReady = n => n && n.youtube && n.status.trim() === "Done"
-  const sketchesToView = data.allGoogleSheetSheet1Row.nodes.filter(isReady)
-
+  const sketchesToView = sketches.filter(isReady)
 
   const onClick = e => {
     const hashIndex = e.target.src.indexOf("#")
@@ -31,24 +35,37 @@ const IndexPage = ({ data }) => {
   }
 
   const getImagesToCarousel = () => {
-    const sketchesToEdit = data.allGoogleSheetSheet1Row.nodes.filter(isEditable)
-    const sketchsToCarousel = shuffle([...sketchesToEdit]).filter((v,index)=>index < 10)
+    if (sketches && sketches.length > 0) {
+      const sketchesToEdit = sketches.filter(isEditable)
+      const sketchsToCarousel = shuffle(
+        sketchesToEdit.map(s => {
+          return {
+            thumbnail: s.thumbnail,
+            season: s.season,
+            sketch: s.sketch,
+            title: s.title,
+          }
+        })
+      ).filter((v, index) => index < 10)
 
-    const images = sketchsToCarousel.map(s => {
-      const thumbnailURL = new URL(s.thumbnail)
-      const fullimageLink =
-        thumbnailURL.protocol + "//" + thumbnailURL.host + thumbnailURL.pathname
-      const slug = `/sketches/s${("" + s.season).padStart(2, 0)}/${(
-        "" + s.sketch
-      ).padStart(3, 0)}`
-      const text = `עונה: ${s.season} מערכון: ${s.sketch} - ${s.title}`
-      return {
-        original: `${fullimageLink}#${slug}`,
-        description: text,
-      }
-    })
-
-    return images
+      const images = sketchsToCarousel.map(s => {
+        const thumbnailURL = new URL(s.thumbnail)
+        const fullimageLink =
+          thumbnailURL.protocol +
+          "//" +
+          thumbnailURL.host +
+          thumbnailURL.pathname
+        const slug = `/sketches/s${("" + s.season).padStart(2, 0)}/${(
+          "" + s.sketch
+        ).padStart(3, 0)}`
+        const text = `עונה: ${s.season} מערכון: ${s.sketch} - ${s.title}`
+        return {
+          original: `${fullimageLink}#${slug}`,
+          description: text,
+        }
+      })
+      return images
+    }
   }
 
   return (
@@ -66,6 +83,7 @@ const IndexPage = ({ data }) => {
         <br />
         בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
       </p>
+      {getImagesToCarousel() ? 
       <ImageGallery
         showFullscreenButton={false}
         showThumbnails={false}
@@ -73,7 +91,7 @@ const IndexPage = ({ data }) => {
         isRTL={true}
         onClick={e => onClick(e)}
         items={getImagesToCarousel()}
-      />
+      />:null}
 
       <h2>המערכונים שתויגו - תודה רבה לכולם על העזרה</h2>
       <ul className="sketches-preview">

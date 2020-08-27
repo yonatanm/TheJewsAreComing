@@ -16,6 +16,7 @@ export default function Sketch( props ) {
           <h1>{sketch.title} - צפי במערכון, ומלאי את הטופס</h1>
         : <h1>{sketch.title}</h1>
         }
+        <h3>עונה {sketch.season}</h3>
 
         {sketch.year!= null && sketch.year.length >0?
           <h3>      
@@ -39,7 +40,7 @@ export default function Sketch( props ) {
               return (<Link to={l}><li className='tag'>{t}</li></Link> )
             })}
           </ul>
-        :null}        
+        :null}
         <iframe title={sketch.title} width="100%" height="315" src={youtubeIframeUr} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         <br/>
         {showEdit?

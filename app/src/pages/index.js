@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => {
   const [sketches, setScketches] = useState([])
   useEffect(() => {
     setScketches(data.allGoogleSheetSheet1Row.nodes)
-  }, [sketches])
+  }, [data.allGoogleSheetSheet1Row.nodes])
 
   const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
   const isReady = n => n && n.youtube && n.status.trim() === "Done"
@@ -114,9 +114,10 @@ const IndexPage = ({ data }) => {
                 ).padStart(3, 0)}`}
               >
                 <h2>
-                  עונה: {sketch.season} מערכון: {sketch.sketch} - {sketch.title}
+                  {sketch.title}
                 </h2>
                 <img src={fullimageLink} alt={sketch.title} />
+                <hr/>
               </Link>
             </li>
           )

@@ -3,9 +3,7 @@ import Layout from "../components/layout"
 import {Link} from "gatsby"
 
 export default function Tag( props ) {  
-  console.log(props, props.pageContext)
   const nodes = props.pageContext.nodes
-  console.log('nodes', nodes )
   return (
     
     <Layout>

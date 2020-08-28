@@ -37,8 +37,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "NODE_ENV=production gatsby build &&  surge public/ thejewsarecoming.surge.sh",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "deploy": "NODE_ENV=production gatsby build && cp -r static public &&  surge public/ www.thejewsarecoming.tv &&  surge public/ thejewsarecoming.tv",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "legacy": "surge legacy thejewsarecoming.surge.sh"
   },
   "repository": {
     "type": "git",

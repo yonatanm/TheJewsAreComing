@@ -7,9 +7,6 @@
  */
 const path = require(`path`)
 const _ = require("lodash")
-require("dotenv").config({
-  path: `config/.env.${process.env.NODE_ENV}`,
-})
 
 const googleFormBaseUrl = process.env.GOOGLE_FORM_BASE_URL
 console.log('process.env.NODE_ENV', process.env.NODE_ENV, 'googleFormBaseUrl',googleFormBaseUrl)
@@ -79,7 +76,6 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   const edges = result.data.allGoogleSheetSheet1Row.edges.filter(e=>e.node && e.node.youtube)
-console.log('edges ', edges.length)
   const allTags = Array.from(
     new Set(
       edges.map(e => e.node.fields.tags)

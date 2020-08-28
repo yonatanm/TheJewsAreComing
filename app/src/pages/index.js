@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
+import { useLocation } from "@reach/router"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./index.css"
@@ -9,17 +11,17 @@ import { navigate } from "gatsby" //import navigate from gatsby
 import ImageGallery from "react-image-gallery"
 
 function shuffle(a) {
-  console.log("in shuffle before:", a[0].season + "_" + a[0].sketch)
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[a[i], a[j]] = [a[j], a[i]]
   }
-  console.log("in shuffle after:", a[0].season + "_" + a[0].sketch)
   return a
 }
 
 const IndexPage = ({ data }) => {
   const [sketches, setScketches] = useState([])
+  const location = useLocation()
+
   useEffect(() => {
     setScketches(data.allGoogleSheetSheet1Row.nodes)
   }, [data.allGoogleSheetSheet1Row.nodes])
@@ -67,21 +69,20 @@ const IndexPage = ({ data }) => {
       return images
     }
   }
+//      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
 
   return (
     <Layout>
-      <SEO title="המתייגים באים" />
-      <p>אנחנו אוהבים את היהודים באים!</p>
-      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
-      <p>
-        לכן החלטנו לבנות אתר שינגיש את התכנים. תחשבו על זה כמו כל ויקיפדיה
+      <SEO title="היהודים באים" />
+      <p>אנחנו אוהבים את היהודים באים! לכן החלטנו לבנות אתר שינגיש את התכנים. תחשבו על זה כמו כל ויקיפדיה
         ליהודים באים.
       </p>
       <p>
         בשביל זה אנחנו צריכים את העזרה שלכם לתייג את המערכונים ולדעת : מי הן
         הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.
         <br />
-        בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
+        בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס. 
+        <b>  {sketchesToView.length} מערכונים כבר תויגו.    </b>
       </p>
       {getImagesToCarousel() ? 
       <ImageGallery

@@ -1,8 +1,17 @@
+require("dotenv").config({
+  path: `config/.env.${process.env.NODE_ENV}`,
+})
+
+
+const siteURL = process.env.SITE_URL
+
 module.exports = {
   siteMetadata: {
-    title: `המתייגים באים `,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `היהודים באים`,
+    description: `האינדקס הפתוח של היהודים באים`,
+    author: ``,
+    url: siteURL,
+    defaultImage: `${siteURL}static/homepage.jpg?x=1`
   },
   plugins: [
     {  

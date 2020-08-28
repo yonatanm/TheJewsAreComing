@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import "./sketch.css"
 
 export default function Sketch( props ) {  
@@ -11,6 +12,7 @@ export default function Sketch( props ) {
   const showEdit = sketch.status.trim() === 'Edit'
   return (
     <Layout>
+      <SEO title={sketch.title} image={sketch.thumbnail} />
       <div>        
         {showEdit?
           <h1>{sketch.title} - צפי במערכון, ומלאי את הטופס</h1>
@@ -28,7 +30,7 @@ export default function Sketch( props ) {
             דמויות:
               {props.pageContext.characters.map(c=>{
                 const l = '/characters/'+c
-                return (<Link to={l}><li className='character'>{c}</li></Link> )
+                return (<Link key={l} to={l}><li className='character'>{c}</li></Link> )
               })}
           </ul>
         :null}
@@ -37,7 +39,7 @@ export default function Sketch( props ) {
             תגיות:
             {props.pageContext.tags.map(t=>{
               const l = '/tags/'+t
-              return (<Link to={l}><li className='tag'>{t}</li></Link> )
+              return (<Link key={l} to={l}><li className='tag'>{t}</li></Link> )
             })}
           </ul>
         :null}

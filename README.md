@@ -8,7 +8,7 @@
 
 הכנסו אל
 
-http://thejewsarecoming.surge.sh/ 
+http://thejewsarecoming.tv/
 
 .בחרו באחד המערכונים, צפו בו, תהנו ותצחקו, ומלאו הטופס
 

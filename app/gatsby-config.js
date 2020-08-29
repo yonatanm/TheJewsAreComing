@@ -2,7 +2,6 @@ require("dotenv").config({
   path: `config/.env.${process.env.NODE_ENV}`,
 })
 
-
 const siteURL = process.env.SITE_URL
 
 module.exports = {
@@ -11,16 +10,22 @@ module.exports = {
     description: `האינדקס הפתוח של היהודים באים`,
     author: ``,
     url: siteURL,
-    defaultImage: `${siteURL}static/homepage.jpg?x=1`
+    defaultImage: `https://www.thejewsarecoming.tv/static/homepage.jpg?willitwork=1`,
   },
   plugins: [
-    {  
-      resolve: 'gatsby-source-google-sheets',     
-      options: {         
-        spreadsheetId: '1YvCCiDAlwdPzyq5tkl1XMWm2LgSaC5Faz3_I4AiEssI',
-        worksheetTitle: 'sheet1',   
-        credentials: require('./secret.json')   
-      } 
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-176710736-1",
+      },
+    },
+    {
+      resolve: "gatsby-source-google-sheets",
+      options: {
+        spreadsheetId: "1YvCCiDAlwdPzyq5tkl1XMWm2LgSaC5Faz3_I4AiEssI",
+        worksheetTitle: "sheet1",
+        credentials: require("./secret.json"),
+      },
     },
     `gatsby-plugin-react-helmet`,
     {

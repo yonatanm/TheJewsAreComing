@@ -10,21 +10,28 @@ export default function Sketch( props ) {
   const youtubeId = new URL(sketch.youtube).searchParams.get('v')
   const youtubeIframeUr = `https://www.youtube.com/embed/${youtubeId}`
   const showEdit = sketch.status.trim() === 'Edit'
+
+
+  const getLocationAndTimeInfo= () => {
+    const hasYaer =  sketch.year!= null && sketch.year.trim().length >0
+    const hasLocation = sketch.location != null  && sketch.location.trim().length > 0
+
+    const asArray = []
+    if (hasLocation) asArray.push(sketch.location.trim())
+    if (hasYaer) asArray.push(sketch.year.trim())
+
+    return asArray.join(', ')
+  }
+
   return (
     <Layout>
       <SEO title={sketch.title} image={sketch.thumbnail} />
       <div>        
-        {showEdit?
-          <h1>{sketch.title} - צפי במערכון, ומלאי את הטופס</h1>
-        : <h1>{sketch.title}</h1>
-        }
+        <h1>{sketch.title}</h1>
         <h3>עונה {sketch.season}</h3>
 
-        {sketch.year!= null && sketch.year.length >0?
-          <h3>      
-            שנה: {sketch.year.trim()}
-          </h3>
-        :null}
+        <span>{getLocationAndTimeInfo()}</span>
+
         {props.pageContext.characters.length>0?
           <ul className='character'>
             דמויות:
@@ -44,9 +51,11 @@ export default function Sketch( props ) {
           </ul>
         :null}
         <iframe title={sketch.title} width="100%" height="315" src={youtubeIframeUr} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        <br/>
         {showEdit?
-          <iframe id='google-form-id' title='טופס' src={formUrl} width='100%' height='500' frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+          <>
+            <h3>צפי במערכון, ומלאי את הטופס</h3>
+            <iframe id='google-form-id' title='טופס' src={formUrl} width='100%' height='500' frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+          </>
         :null}
       </div>
     </Layout>
@@ -63,6 +72,7 @@ export const query = graphql`
       season
       thumbnail    
       status
+      location
     }
   }
 `

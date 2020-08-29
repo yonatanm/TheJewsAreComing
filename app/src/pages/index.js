@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./index.css"
 import { navigate } from "gatsby" //import navigate from gatsby
+import Share from "../components/share"
 
 // Import css files
 import ImageGallery from "react-image-gallery"
@@ -75,7 +76,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="היהודים באים" />
       <p>
-        אנחנו אוהבים את היהודים באים! לכן החלטנו לבנות אתר שינגיש את התכנים.
+        אנחנו אוהבים את היהודים באים!   לכן החלטנו לבנות אתר שינגיש את התכנים.
         תחשבו על זה כמו כל ויקיפדיה ליהודים באים.
       </p>
       <p>
@@ -85,6 +86,17 @@ const IndexPage = ({ data }) => {
         בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
         <b> {sketchesToView.length} מערכונים כבר תויגו. </b>
       </p>
+      <Share
+				socialConfig={{
+          twitterHandle: '',
+					config: {
+						url: `${data.site.siteMetadata.url}`,
+						title : data.site.siteMetadata.description
+					},
+				}}
+				tags={['היהודים_באים']}
+			/>
+
       {getImagesToCarousel() ? (
         <ImageGallery
           showFullscreenButton={false}
@@ -141,5 +153,12 @@ export const query = graphql`
         status
       }
     }
-  }
+
+    site {
+      siteMetadata {
+        url
+        description
+      }
+    }
+   }
 `

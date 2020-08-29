@@ -14,6 +14,7 @@ const defaultPlugins = [
     },
   },
   `gatsby-plugin-react-helmet`,
+  `gatsby-plugin-sass`,
   {
     resolve: `gatsby-source-filesystem`,
     options: {
@@ -52,7 +53,7 @@ if (process.env.GOOGLE_ANALYTICS === "true") {
 module.exports = {
   siteMetadata: {
     title: `היהודים באים`,
-    description: `האינדקס הפתוח של היהודים באים`,
+    description: `היהודים באים - האתר`,
     author: `thejewsarecoming.tv@gmail.com`,
     url: siteURL,
     defaultImage: `http://www.thejewsarecoming.tv/static/homepage.jpg`,

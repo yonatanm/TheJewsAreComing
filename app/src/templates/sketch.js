@@ -3,8 +3,10 @@ import {Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./sketch.css"
+import Share from "../components/share"
 
 export default function Sketch( props ) {  
+  console.log('props.data.site', props.data.site)
   const sketch = props.data.googleSheetSheet1Row
   const formUrl = `${props.pageContext.googleFormBaseUrl}?embedded=true&usp=pp_url&entry.950216314=${sketch.season}&entry.996302659=${sketch.sketch}&entry.274032217=${encodeURIComponent(sketch.title)}`
   const youtubeId = new URL(sketch.youtube).searchParams.get('v')
@@ -30,6 +32,7 @@ export default function Sketch( props ) {
     thumbnailURL.host +
     thumbnailURL.pathname
 
+    const siteUrl= props.data.site.siteMetadata.url.replace(/\/$/, "");
 
 
   return (
@@ -60,6 +63,16 @@ export default function Sketch( props ) {
           </ul>
         :null}
         <iframe title={sketch.title} width="100%" height="315" src={youtubeIframeUr} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <Share
+				socialConfig={{
+          twitterHandle: '',
+					config: {
+						url: `${siteUrl}${props.pageContext.slug}`,
+						title : sketch.title
+					},
+				}}
+				tags={['היהודים_באים']}
+			/>
         {showEdit?
           <>
             <h3>צפי במערכון, ומלאי את הטופס</h3>
@@ -82,6 +95,12 @@ export const query = graphql`
       thumbnail    
       status
       location
+    }
+
+    site {
+      siteMetadata {
+        url
+      }
     }
   }
 `

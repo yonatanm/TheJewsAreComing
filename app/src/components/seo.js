@@ -65,6 +65,10 @@ function SEO({ description, lang, meta, title, image }) {
           content: site.siteMetadata.author,
         },
         {
+          name: `author`,
+          content: site.siteMetadata.author,
+        },
+        {
           name: `twitter:title`,
           content: title,
         },
@@ -73,7 +77,8 @@ function SEO({ description, lang, meta, title, image }) {
           content: metaDescription,
         },
         {
-          name: `og:image`,
+          property: `og:image`,
+          name: "image",
           content: theImage,
         },
         {

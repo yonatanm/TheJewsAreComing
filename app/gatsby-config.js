@@ -53,9 +53,9 @@ module.exports = {
   siteMetadata: {
     title: `היהודים באים`,
     description: `האינדקס הפתוח של היהודים באים`,
-    author: ``,
+    author: `thejewsarecoming.tv@gmail.com`,
     url: siteURL,
-    defaultImage: `https://www.thejewsarecoming.tv/static/homepage.jpg?willitwork=1`,
+    defaultImage: `http://www.thejewsarecoming.tv/static/homepage.jpg`,
   },
   plugins: myPlugins
 }

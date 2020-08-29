@@ -24,8 +24,8 @@ const AboutPage = () => (
     <p>
       צרי קשר
       <br />
-      <a href="mailto:the.jews.are.coming@gmail.com">
-        the.jews.are.coming@gmail.com
+      <a href="mailto:thejewsarecoming.tv@gmail.com">
+      thejewsarecoming.tv@gmail.com
       </a>
     </p>
   </Layout>

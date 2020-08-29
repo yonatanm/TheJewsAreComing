@@ -69,30 +69,32 @@ const IndexPage = ({ data }) => {
       return images
     }
   }
-//      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
+  //      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
 
   return (
     <Layout>
       <SEO title="היהודים באים" />
-      <p>אנחנו אוהבים את היהודים באים! לכן החלטנו לבנות אתר שינגיש את התכנים. תחשבו על זה כמו כל ויקיפדיה
-        ליהודים באים.
+      <p>
+        אנחנו אוהבים את היהודים באים! לכן החלטנו לבנות אתר שינגיש את התכנים.
+        תחשבו על זה כמו כל ויקיפדיה ליהודים באים.
       </p>
       <p>
         בשביל זה אנחנו צריכים את העזרה שלכם לתייג את המערכונים ולדעת : מי הן
         הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.
         <br />
-        בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס. 
-        <b>  {sketchesToView.length} מערכונים כבר תויגו.    </b>
+        בחרי באחד המערכונים בקרוסלה 👇, צפי, תהני ותצחקי, ומלאי את הטופס.
+        <b> {sketchesToView.length} מערכונים כבר תויגו. </b>
       </p>
-      {getImagesToCarousel() ? 
-      <ImageGallery
-        showFullscreenButton={false}
-        showThumbnails={false}
-        showPlayButton={false}
-        isRTL={true}
-        onClick={e => onClick(e)}
-        items={getImagesToCarousel()}
-      />:null}
+      {getImagesToCarousel() ? (
+        <ImageGallery
+          showFullscreenButton={false}
+          showThumbnails={false}
+          showPlayButton={false}
+          isRTL={true}
+          onClick={e => onClick(e)}
+          items={getImagesToCarousel()}
+        />
+      ) : null}
 
       <h2>המערכונים שתויגו - תודה רבה לכולם על העזרה</h2>
       <ul className="sketches-preview">
@@ -105,22 +107,20 @@ const IndexPage = ({ data }) => {
             thumbnailURL.pathname
 
           return (
-            <li
-              className="sketch-preview"
-              key={sketch.season + "_" + sketch.sketch}
+            <Link
+              to={`/sketches/s${("" + sketch.season).padStart(2, 0)}/${(
+                "" + sketch.sketch
+              ).padStart(3, 0)}`}
             >
-              <Link
-                to={`/sketches/s${("" + sketch.season).padStart(2, 0)}/${(
-                  "" + sketch.sketch
-                ).padStart(3, 0)}`}
+              <li
+                className="sketch-preview"
+                key={sketch.season + "_" + sketch.sketch}
               >
-                <h2>
-                  {sketch.title}
-                </h2>
+                <h2>{sketch.title}</h2>
                 <img src={fullimageLink} alt={sketch.title} />
-                <hr/>
-              </Link>
-            </li>
+                <hr />
+              </li>
+            </Link>
           )
         })}
       </ul>

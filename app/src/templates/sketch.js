@@ -23,9 +23,18 @@ export default function Sketch( props ) {
     return asArray.join(', ')
   }
 
+  const thumbnailURL = new URL(sketch.thumbnail)
+  const fullimageLink =
+    thumbnailURL.protocol +
+    "//" +
+    thumbnailURL.host +
+    thumbnailURL.pathname
+
+
+
   return (
     <Layout>
-      <SEO title={sketch.title} image={sketch.thumbnail} />
+      <SEO title={sketch.title} image={fullimageLink} />
       <div>        
         <h1>{sketch.title}</h1>
         <h3>עונה {sketch.season}</h3>

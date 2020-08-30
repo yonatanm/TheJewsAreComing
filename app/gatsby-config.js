@@ -55,7 +55,7 @@ module.exports = {
     description: `היהודים באים - האתר`,
     author: `thejewsarecoming.tv@gmail.com`,
     url: siteURL,
-    defaultImage: `http://www.thejewsarecoming.tv/static/homepage.jpg`,
+    defaultImage: `http://thejewsarecoming.tv/static/homepage.jpg`,
   },
   plugins: myPlugins
 }

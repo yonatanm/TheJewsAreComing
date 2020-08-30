@@ -11,7 +11,7 @@ const AboutPage = () => (
 
     <p>אנחנו אוהבים את היהודים באים!</p>
 
-    <p>לכן החלטנו לבנות אתר שינגיש את התכנים.       תחשבו על זה כמו כל ויקיפדיה ליהודים באים.</p>
+    <p>לכן החלטנו לבנות אתר שינגיש את התכנים.       תחשבו על זה כמו על ויקיפדיה ליהודים באים.</p>
     <p>
       בשביל זה אנחנו צריכים את העזרה שלכם לתייג את המערכונים ולדעת : מי הן
       הדמויות, איזה פרק ופסוק ומהם הנושאים (תגיות) שמדוברים במערכון.
@@ -24,8 +24,8 @@ const AboutPage = () => (
     <p>
       צרי קשר
       <br />
-      <a href="mailto:the.jews.are.coming@gmail.com">
-        the.jews.are.coming@gmail.com
+      <a href="mailto:thejewsarecoming.tv@gmail.com">
+      thejewsarecoming.tv@gmail.com
       </a>
     </p>
   </Layout>

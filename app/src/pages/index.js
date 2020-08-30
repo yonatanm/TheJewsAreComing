@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
-import { useLocation } from "@reach/router"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -20,16 +19,16 @@ function shuffle(a) {
 }
 
 const IndexPage = ({ data }) => {
-  const [sketches, setScketches] = useState([])
-  const location = useLocation()
+  const [sketches, setSketches] = useState([])
 
   useEffect(() => {
-    setScketches(data.allGoogleSheetSheet1Row.nodes)
+    setSketches(data.allGoogleSheetSheet1Row.nodes)
   }, [data.allGoogleSheetSheet1Row.nodes])
 
+  const hasSketches = sketches && sketches.length > 0
   const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
   const isReady = n => n && n.youtube && n.status.trim() === "Done"
-  const sketchesToView = sketches.filter(isReady)
+  const sketchesToView = hasSketches ? sketches.filter(isReady) : []
 
   const onClick = e => {
     const hashIndex = e.target.src.indexOf("#")
@@ -38,7 +37,7 @@ const IndexPage = ({ data }) => {
   }
 
   const getImagesToCarousel = () => {
-    if (sketches && sketches.length > 0) {
+    if (hasSketches) {
       const sketchesToEdit = sketches.filter(isEditable)
       const sketchsToCarousel = shuffle(
         sketchesToEdit.map(s => {
@@ -49,7 +48,7 @@ const IndexPage = ({ data }) => {
             title: s.title,
           }
         })
-      ).filter((v, index) => index < 10)
+      ).slice(0, 10)
 
       const images = sketchsToCarousel.map(s => {
         const thumbnailURL = new URL(s.thumbnail)
@@ -70,7 +69,6 @@ const IndexPage = ({ data }) => {
       return images
     }
   }
-  //      <b> {sketchesToView.length} מערכונים כבר תויגו </b>
 
   return (
     <Layout>
@@ -87,17 +85,17 @@ const IndexPage = ({ data }) => {
         <b> {sketchesToView.length} מערכונים כבר תויגו. </b>
       </p>
       <Share
-				socialConfig={{
+        socialConfig={{
           twitterHandle: '',
-					config: {
-						url: `${data.site.siteMetadata.url}`,
-						title : data.site.siteMetadata.description
-					},
-				}}
-				tags={['היהודים_באים']}
-			/>
+          config: {
+            url: `${data.site.siteMetadata.url}`,
+            title : data.site.siteMetadata.description
+          },
+        }}
+        tags={['היהודים_באים']}
+      />
 
-      {getImagesToCarousel() ? (
+      {hasSketches && (
         <ImageGallery
           showFullscreenButton={false}
           showThumbnails={false}
@@ -106,7 +104,7 @@ const IndexPage = ({ data }) => {
           onClick={e => onClick(e)}
           items={getImagesToCarousel()}
         />
-      ) : null}
+      )}
 
       <h2>המערכונים שתויגו - תודה רבה לכולם על העזרה</h2>
       <ul className="sketches-preview">

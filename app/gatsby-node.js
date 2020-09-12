@@ -90,24 +90,6 @@ exports.createPages = async ({ graphql, actions }) => {
     )
   )
 
-
-  createPage({
-    path: `/tags/`,
-    component: path.resolve(`./src/templates/tags.js`),
-    context: {
-      tags: allTags,
-    },
-  })
-
-
-  createPage({
-    path: `/characters/`,
-    component: path.resolve(`./src/templates/characters.js`),
-    context: {
-      characters: allCharacters,
-    },
-  })
-
   const tagsMap = allTags.reduce((c, v) => {
     c[v] = []
     return c
@@ -131,6 +113,15 @@ exports.createPages = async ({ graphql, actions }) => {
   }, charactersMap)
 
 
+  createPage({
+    path: `/tags/`,
+    component: path.resolve(`./src/templates/tags.js`),
+    context: {
+      tags: allTags,
+      tagsMap: tagsMap
+    },
+  })
+
   Object.keys(tagsMap).forEach(t => {
     createPage({
       path: `/tags/${t}`,
@@ -140,6 +131,15 @@ exports.createPages = async ({ graphql, actions }) => {
         tag: t,
       },
     })
+  })
+
+  createPage({
+    path: `/characters/`,
+    component: path.resolve(`./src/templates/characters.js`),
+    context: {
+      characters: allCharacters,
+      charactersMap: charactersMap
+    },
   })
 
   Object.keys(charactersMap).forEach(c => {

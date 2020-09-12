@@ -3,22 +3,22 @@ import Layout from "../components/layout"
 import {Link} from "gatsby"
 
 export default function Tags( props ) {  
-  const tags = props.pageContext.tags
+  const {tags, tagsMap} = props.pageContext
   return (
     
     <Layout>
-      <h1>תגיות</h1>
+      <h1>{tags.length} תגיות</h1>
       <ul className='tags'>
         {tags.map(t => {
           return (
-            <>
-            <li className='tag' key={t}>
+            <div key={t}>
+            <li className='tag'>
               <Link to={`/tags/${t}`}>
-                {t}
+                {t} ({tagsMap[t].length})
               </Link>
             </li>
             <br/>
-            </>
+            </div>
           )
         })}
       </ul>

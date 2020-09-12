@@ -4,6 +4,12 @@ import { Link } from "gatsby"
 
 export default function Characters(props) {
   const { characters, charactersMap } = props.pageContext
+  characters.sort((c1, c2)=> {
+    const delta = charactersMap[c2].length - charactersMap[c1].length
+    if (delta != 0) return delta
+    return c2 - c1
+  })
+
 
   console.log("charactersMap", charactersMap)
 

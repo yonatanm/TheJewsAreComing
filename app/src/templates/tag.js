@@ -26,7 +26,7 @@ export default function Tag( props ) {
                 to={fields.slug}
               >
                 <h2>
-                  עונה: {n.season} מערכון: {n.sketch} - {n.title}
+                  {n.title}
                 </h2>
                 <img src={fullimageLink} alt={n.title}/>
               </Link>

@@ -4,6 +4,11 @@ import {Link} from "gatsby"
 
 export default function Tags( props ) {  
   const {tags, tagsMap} = props.pageContext
+  tags.sort((t1, t2)=> {
+    const delta = tagsMap[t2].length - tagsMap[t1].length
+    if (delta != 0) return delta
+    return t2 - t1
+  })
   return (
     
     <Layout>

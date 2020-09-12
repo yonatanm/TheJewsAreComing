@@ -166,4 +166,34 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+  const dataForHome = await graphql(`
+  {
+    allGoogleSheetSheet1Row {
+      nodes {
+        season
+        sketch
+        title
+        youtube
+        thumbnail
+        status
+      }
+    }
+
+    site {
+      siteMetadata {
+        url
+        description
+      }
+    }
+  }`)
+
+  createPage({
+    path: '/',
+    component: path.resolve(`./src/templates/home.js`),
+    context: {
+      data: dataForHome.data
+    },
+  })
+
 }

@@ -7,7 +7,7 @@ const NotFoundPage = () => (
   <Layout>
     <SEO title="404: Not found" />
     <h1>לא קיים</h1>
-    <p>חיפשנו וחיפשנו את העמוד שרצית ו... וואללה, לא מצאנו. באסה! 😞</p>
+    <p>חיפשנו וחיפשנו את העמוד שרצית ו... וואללה, לא מצאנו. באסה!<span role="img" aria-label="sad">😞</span></p>
   </Layout>
 )
 

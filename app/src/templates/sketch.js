@@ -6,7 +6,6 @@ import "./sketch.css"
 import Share from "../components/share"
 
 export default function Sketch( props ) {  
-  console.log('props.data.site', props.data.site)
   const sketch = props.data.googleSheetSheet1Row
   const formUrl = `${props.pageContext.googleFormBaseUrl}?embedded=true&usp=pp_url&entry.950216314=${sketch.season}&entry.996302659=${sketch.sketch}&entry.274032217=${encodeURIComponent(sketch.title)}`
   const youtubeId = new URL(sketch.youtube).searchParams.get('v')

@@ -41,7 +41,6 @@ const defaultPlugins = [
 const myPlugins = defaultPlugins
 
 if (process.env.GOOGLE_ANALYTICS === "true") {
-  console.log('@@ injecting GA @@')
   myPlugins.push({
     resolve: `gatsby-plugin-google-analytics`,
     options: {

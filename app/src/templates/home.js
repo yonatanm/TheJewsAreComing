@@ -27,6 +27,9 @@ const Home = props => {
     if (window.location.hostname.indexOf('thejewsarecoming.surge.sh') >= 0) {
       window.location.href = "http://www.thejewsarecoming.tv";
     }
+    if (window.location.hostname.indexOf('thejewsarecoming.tv') >= 0) {
+      window.location.href = "http://www.thejewsarecoming.tv";
+    }
     setShowGalary(true)
   })
 

@@ -10,9 +10,6 @@ export default function Characters(props) {
     return c2 - c1
   })
 
-
-  console.log("charactersMap", charactersMap)
-
   return (
     <Layout>
       <h1>{characters.length} דמויות</h1>

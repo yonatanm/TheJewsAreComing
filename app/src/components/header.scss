@@ -3,6 +3,8 @@ $tabPadding: 15px;
 header {
   background: rebeccapurple;
   margin-bottom: 1.45rem;
+  overflow-x: auto;
+  overflow-y: hidden;
 
   a {
     text-decoration: none;
@@ -27,9 +29,10 @@ header {
 
       ul {
         list-style: none;
-        padding: 0 0 10px;
+        padding: 0 0 13px;
+        white-space: nowrap;
         margin: 0;
-        maring-right: -$tabPadding;
+        margin-right: -$tabPadding;
 
         h4 {
           display: inline;
@@ -41,8 +44,9 @@ header {
 
           a {
             color: white;
-            padding: 7px 10px;
+            padding: 3px 10px;
             font-size: 1.5em;
+            white-space: nowrap;
 
             &:hover {
               color: #BB0;

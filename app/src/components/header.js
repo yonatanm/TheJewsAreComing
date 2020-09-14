@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, {useState} from "react"
-import './header.scss';
+import React, { useEffect } from "react"
+import './header.scss'
 
 function getSelectedTab() {
   if (window.location.pathname.match(/^\/about/)) {
@@ -20,13 +20,17 @@ function getSelectedTab() {
 }
 
 const Header = ({ siteTitle }) => {
-  const selectedTab = getSelectedTab()
+  let selectedTab = ''
   const getTabClass = tab => tab === selectedTab ? 'selected' : ''
+
+  useEffect(() => {
+    selectedTab = getSelectedTab()
+  })
 
   return (
     <header>
       <div>
-        <h1 style={{ margin: 0 }}>
+        <h1>
           <Link to="/">{siteTitle}</Link>
         </h1>
 

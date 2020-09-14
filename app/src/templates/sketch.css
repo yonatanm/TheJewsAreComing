@@ -1,32 +1,70 @@
-ul.characters {
+ul.list {
   list-style-type: none;
  }
 
-ul.tags {
-  list-style-type: none;
+ul.list > div {
+  margin-block-end: 3px;
+}
+
+ul.list.cloud > div {
+  display: inline flow-root list-item;
+}
+
+ul.list li {
+  display: inline;
+  margin-left: 7px;
+  margin-bottom: 3px;
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 1px 7px;
 }
 
 li.character {
-  display: inline;
-  margin-left: 1em;
-  border-radius: 25px;
   background: #73AD21;
-  padding-left: 0.5em;
 }
 
 li.character:hover {
   background: lightgreen;
 }
 
-
 li.tag {
-  display: inline;
-  margin-left: 1em;
-  border-radius: 25px;
   background: red;
-  padding-left: 0.5em;
 }
 
 li.tag:hover {
   background: lightcoral;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-options {
+  margin-block-end: 10px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.list-options > * {
+  margin-bottom: 10px;
+}
+
+.option {
+  margin-inline-start: 5px;
+  border: 1px solid lightslategray;
+  border-radius: 23px;
+  padding: 1px 10px;
+  cursor: pointer;
+}
+
+.option.selected {
+  color: white;
+  background-color: rebeccapurple;
+}
+
+.option:last-of-type {
+  margin-inline-end: 30px;
 }

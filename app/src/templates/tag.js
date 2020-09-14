@@ -5,10 +5,8 @@ import {Link} from "gatsby"
 export default function Tag( props ) {  
   const nodes = props.pageContext.nodes
   return (
-    
-    <Layout>
+    <Layout domain="tags">
       <h1>{props.pageContext.tag}</h1>
-
 
       <ul className='sketches-preview'>
         {nodes.map(n => {
@@ -34,7 +32,6 @@ export default function Tag( props ) {
           )
         })}
       </ul>
-      
     </Layout>
   )
 }

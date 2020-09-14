@@ -11,7 +11,7 @@ export default function Characters(props) {
   })
 
   return (
-    <Layout>
+    <Layout domain="characters">
       <h1>{characters.length} דמויות</h1>
       <ul className="characters">
         {characters.map(c => {

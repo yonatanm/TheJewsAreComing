@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const NotFoundPage = () => (
-  <Layout>
+  <Layout domain="main">
     <SEO title="404: Not found" />
     <h1>לא קיים</h1>
     <p>חיפשנו וחיפשנו את העמוד שרצית ו... וואללה, לא מצאנו. באסה!<span role="img" aria-label="sad">😞</span></p>

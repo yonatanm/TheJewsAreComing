@@ -3,29 +3,8 @@ import PropTypes from "prop-types"
 import React, { useEffect } from "react"
 import './header.scss'
 
-function getSelectedTab() {
-  if (window.location.pathname.match(/^\/about/)) {
-    return 'about'
-  }
-
-  if (window.location.pathname.match(/^\/characters/)) {
-    return 'characters'
-  }
-
-  if (window.location.pathname.match(/^\/tags/)) {
-    return 'tags'
-  }
-
-  return 'main'
-}
-
-const Header = ({ siteTitle }) => {
-  let selectedTab = ''
-  const getTabClass = tab => tab === selectedTab ? 'selected' : ''
-
-  useEffect(() => {
-    selectedTab = getSelectedTab()
-  })
+const Header = ({ domain, siteTitle }) => {
+  const getTabClass = tab => tab === domain ? 'selected' : ''
 
   return (
     <header>
@@ -63,6 +42,7 @@ const Header = ({ siteTitle }) => {
   )
 }
 Header.propTypes = {
+  domain: PropTypes.oneOf(['main', 'characters', 'tags', 'about']).isRequired,
   siteTitle: PropTypes.string,
 }
 

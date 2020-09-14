@@ -10,8 +10,7 @@ export default function Tags( props ) {
     return t2 - t1
   })
   return (
-    
-    <Layout>
+    <Layout domain="tags">
       <h1>{tags.length} תגיות</h1>
       <ul className='tags'>
         {tags.map(t => {

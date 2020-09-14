@@ -25,10 +25,7 @@ const Home = props => {
   const [showGalary, setShowGalary] = useState(false);
   useEffect(() => {
     if (window.location.hostname.indexOf('thejewsarecoming.surge.sh') >= 0) {
-      window.location.href = "http://www.thejewsarecoming.tv";
-    }
-    if (window.location.hostname.indexOf('thejewsarecoming.tv') >= 0) {
-      window.location.href = "http://www.thejewsarecoming.tv";
+      window.location.href = "http://thejewsarecoming.tv";
     }
     setShowGalary(true)
   })

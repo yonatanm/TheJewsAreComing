@@ -22,7 +22,7 @@
 //   const [sketches, setSketches] = useState([])
 //   useEffect(() => {
 //     if (window.location.hostname.indexOf('thejewsarecoming.surge.sh') >= 0) {
-//       window.location.href = "http://www.thejewsarecoming.tv";
+//       window.location.href = "http://thejewsarecoming.tv";
 //     }
 //     setSketches(data.allGoogleSheetSheet1Row.nodes)
 //   }, [data.allGoogleSheetSheet1Row.nodes])

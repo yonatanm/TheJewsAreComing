@@ -1,0 +1,62 @@
+$tabPadding: 15px;
+
+header {
+  background: rebeccapurple;
+  margin-bottom: 1.45rem;
+
+  a {
+    text-decoration: none;
+  }
+
+  > div {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1.45rem 1.0875rem;
+
+    h1 {
+      margin: 0;
+
+      a {
+        color: white;
+      }
+    }
+
+    nav {
+      margin-top: 20px;
+      margin-bottom: -30px;
+
+      ul {
+        list-style: none;
+        padding: 0 0 10px;
+        margin: 0;
+        maring-right: -$tabPadding;
+
+        h4 {
+          display: inline;
+        }
+
+        li {
+          display: inline;
+          margin: 0 0 0 $tabPadding;
+
+          a {
+            color: white;
+            padding: 7px 10px;
+            font-size: 1.5em;
+
+            &:hover {
+              color: #BB0;
+            }
+          }
+
+          &.selected {
+            a {
+              color: #BFB;
+              border-bottom: solid 7px #5E5;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -86,7 +86,7 @@ const Home = props => {
   }
 
   return (
-    <Layout>
+    <Layout domain="main">
       <SEO title="היהודים באים" />
       <p>
         אנחנו אוהבים את היהודים באים! לכן החלטנו לבנות אתר שינגיש את התכנים.

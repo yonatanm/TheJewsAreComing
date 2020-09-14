@@ -6,7 +6,7 @@ export default function Character( props ) {
   const nodes = props.pageContext.nodes
   return (
     
-    <Layout>
+    <Layout domain="characters">
       <h1>{props.pageContext.character}</h1>
 
 

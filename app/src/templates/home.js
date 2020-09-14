@@ -27,7 +27,7 @@ const Home = props => {
     if (window.location.hostname.indexOf('thejewsarecoming.surge.sh') >= 0) {
       window.location.href = "http://www.thejewsarecoming.tv";
     }
-    if (window.location.hostname.indexOf('thejewsarecoming.tv') >= 0) {
+    if (window.location.hostname.indexOf('thejewsarecoming.tv') === 0) {
       window.location.href = "http://www.thejewsarecoming.tv";
     }
     setShowGalary(true)
@@ -37,12 +37,6 @@ const Home = props => {
   const isEditable = n => n && n.youtube && n.status.trim() === "Edit"
   const isReady = n => n && n.youtube && n.status.trim() === "Done"
   const sketchesToView = hasSketches ? sketches.filter(isReady) : []
-
-  const onClick = (e, index) => {
-    const hashIndex = e.target.src.indexOf("#")
-    const slug = e.target.src.substr(hashIndex + 1)
-    navigate(slug)
-  }
 
   const renderItem  = (item) => {
     return <Link to={item.slug}>
@@ -116,7 +110,6 @@ const Home = props => {
           showThumbnails={false}
           showPlayButton={false}
           isRTL={true}
-          // onClick={(e, index) => onClick(e, index)}
           renderItem={(a,b,c) => renderItem(a,b,c)}
           items={getImagesToCarousel()}
         />

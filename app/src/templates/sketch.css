@@ -15,12 +15,21 @@ ul.list li {
   margin-left: 7px;
   margin-bottom: 3px;
   border-radius: 25px;
-  background: #73AD21;
   padding: 1px 7px;
+}
+
+ul.list a {
+  text-decoration: none;
+  color: black;
+}
+
+ul.list a:visited {
+  color: purple;
 }
 
 li.character {
   background: #73AD21;
+  padding: 1px 7px;
 }
 
 li.character:hover {

@@ -44,20 +44,20 @@ export default function Sketch( props ) {
         <span>{getLocationAndTimeInfo()}</span>
 
         {props.pageContext.characters.length>0?
-          <ul className='character'>
+          <ul className='list character'>
             דמויות:
               {props.pageContext.characters.map(c=>{
                 const l = '/characters/'+c
-                return (<Link key={l} to={l}><li className='character'>{c}</li></Link> )
+                return <li className='character'><Link key={l} to={l}>{c}</Link></li>
               })}
           </ul>
         :null}
         {props.pageContext.tags.length>0?
-          <ul tag='tags'>
+          <ul className='list tags'>
             תגיות:
             {props.pageContext.tags.map(t=>{
               const l = '/tags/'+t
-              return (<Link key={l} to={l}><li className='tag'>{t}</li></Link> )
+              return <li className='tag'><Link key={l} to={l}>{t}</Link></li>
             })}
           </ul>
         :null}
